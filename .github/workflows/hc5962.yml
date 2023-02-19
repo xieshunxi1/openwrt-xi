@@ -2,11 +2,11 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # Description: Build OpenWrt using GitHub Actions
 # Lisence: MIT
-# Author: P3TERX
+# Author: xi
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build bcm27xx/bcm2708 openwrt
+name: Build hc5962 openwrt
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ on:
   #   types: started
 
 env:
-  CONFIG_FILE: config/bcm27xx/bcm2708.config
+  CONFIG_FILE: config/hiwifi/hc5962.config
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: openwrt-18.06-k5.4
   DIY_SH: scripts/custom.sh
@@ -320,7 +320,7 @@ jobs:
             mv key-build.pub $(usign -F -p key-build.pub)
           fi
           cd $OPENWRT_ROOT_PATH
-          echo "dtparam=i2c_arm=on,audio=on" >> target/linux/bcm27xx/image/config.txt
+          echo "dtparam=i2c_arm=on,audio=on" >> target/linux/hiwifi/image/config.txt
           mkdir -p files/etc/uci-defaults/
           cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
           mkdir -p files/www/snapshots
